@@ -93,10 +93,9 @@ public class ChoiceSyncOptions extends ParameterDefinition {
    // 	return defaultValue(Normal.class)
    // }
     
-    private String defaultValue(Class<Normal> class1) {
-		// TODO Auto-generated method stub
-		return defaultValue;
-	}
+    public Option getDefaultValue(){
+    	return new Normal();
+    }
 
 //	public String getEffectiveDefaultValue() {
 //		return computeValue(defaultValue);
