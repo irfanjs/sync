@@ -82,24 +82,14 @@ public class ChoiceSyncOptions extends ParameterDefinition {
     
     private Option selectedOption = null;
     
-   // @Override
-	//public ParameterValue getDefaultParameterValue() {
-//		String defaultValue = "Normal";
-	//	return new ChoiceSyncParameterValue(defaultValue, selectedOption);
-	//	return super.getDefaultParameterValue();
-//	}
-    
-   // private String computeValue(String value) {
-   // 	return defaultValue(Normal.class)
-   // }
-    
+    protected boolean normal_def = true;
+        
+        public boolean isDefault() {
+            return normal_def;
+        }
     public Option getDefaultValue(){
-    	return new Normal();
+        return new Normal();     
     }
-
-//	public String getEffectiveDefaultValue() {
-//		return computeValue(defaultValue);
-//	}
     
     
     public Option getSelectedOption() {
@@ -113,7 +103,7 @@ public class ChoiceSyncOptions extends ParameterDefinition {
     public static abstract class Option implements ExtensionPoint, Describable<Option> {
         protected String name;
         protected Option(String name) { this.name = name; }
-
+        
         public Descriptor<Option> getDescriptor() {
             return Hudson.getInstance().getDescriptor(getClass());
         }
@@ -133,7 +123,9 @@ public class ChoiceSyncOptions extends ParameterDefinition {
     public static class Normal extends Option {
         @DataBoundConstructor public Normal() {
             super("Normal");
+          //  normal_def = true;
         }
+       
         @Extension public static final OptionDescriptor D = new OptionDescriptor(Normal.class);
 
         @Override
@@ -141,6 +133,9 @@ public class ChoiceSyncOptions extends ParameterDefinition {
             scm.setForceSync(false);
             scm.setDisableSyncOnly(false);
             scm.setP4Label(null);
+           // normal_def = true;
+            
+          
         }
     }
     

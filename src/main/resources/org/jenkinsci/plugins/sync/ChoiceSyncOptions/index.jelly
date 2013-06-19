@@ -8,7 +8,7 @@
           <j:forEach var="descriptor" items="${it.optionDescriptors}" varStatus="loop">
             <f:dropdownListBlock title="${descriptor.displayName}" value="${loop.index}"
                                  staplerClass="${descriptor.clazz.name}">
-          
+                                  selected="${descriptor.isDefault()}">
               <st:include page="${descriptor.configPage}" from="${descriptor}"/>
             </f:dropdownListBlock>
           </j:forEach>
