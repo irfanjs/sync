@@ -23,7 +23,7 @@ public class ChoiceSyncParameterValue extends ParameterValue {
     }
 
     public String getSyncOption() {
-        return syncOption.toString();
+        return syncOption.getOptionName();
     }
 
     public void setSyncOption(ChoiceSyncOptions.Option syncOption) {
