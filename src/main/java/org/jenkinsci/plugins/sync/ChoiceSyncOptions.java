@@ -31,13 +31,14 @@ public class ChoiceSyncOptions extends ParameterDefinition {
     public static final String FORCE_SYNC = "Force Sync";
     public static final String CHANGE_SYNC = "Sync based on Change-list";
     public static final String LBL_SYNC = "Sync based on Label";
-    private String defaultValue = "Normal";
+    private String defaultValue;
     
     //public String label;
     
     @DataBoundConstructor
     public ChoiceSyncOptions(String name) {
-        super("sync-parameter");        
+        super("sync-parameter"); 
+        this.defaultValue = defaultValue;
     }
 
     @Override
@@ -87,14 +88,23 @@ public class ChoiceSyncOptions extends ParameterDefinition {
         public boolean isDefault() {
             return normal_def;
         }
-    public Option getDefaultValue(){
+   /* public Option getDefaultValue(){
         return new Normal();     
-    }
+    }*/
     
     
     public Option getSelectedOption() {
         return selectedOption;
     }
+    
+    public String getDefaultValue() {
+    	
+        return defaultValue;
+}
+    
+    public void setDefaultValue(String defaultValue) {
+        this.defaultValue = defaultValue;
+}
     
     public void setSelectedOption(Option selectedOption) {
         this.selectedOption = selectedOption;
@@ -106,6 +116,10 @@ public class ChoiceSyncOptions extends ParameterDefinition {
         
         public Descriptor<Option> getDescriptor() {
             return Hudson.getInstance().getDescriptor(getClass());
+        }
+        
+        public String getOptionName(){
+        	return this.name;
         }
         
         public abstract void applyPerforceOptions(PerforceSCM scm);
